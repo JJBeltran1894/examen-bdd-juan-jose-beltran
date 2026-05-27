@@ -22,18 +22,22 @@ public class Vuelo {
 	private Double precioBoleto;
 	
 	@Column(name = "asientos_disponibles", nullable = false)
-	private int asientosDisponibles;
+	private Integer asientosDisponibles;
+	
+	@Column(name = "destino", length = 100)
+	private String destino;
 
 	public Vuelo() {
 		super();
 	}
 
-	public Vuelo(Long id, String codigo, Double precioBoleto, int asientosDisponibles) {
+	public Vuelo(Long id, String codigo, Double precioBoleto, Integer asientosDisponibles,String destino) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
 		this.precioBoleto = precioBoleto;
 		this.asientosDisponibles = asientosDisponibles;
+		this.destino = destino;
 	}
 
 	public long getId() {
@@ -68,11 +72,20 @@ public class Vuelo {
 		this.asientosDisponibles = asientosDisponibles;
 	}
 
+	public String getDestino() {
+		return destino;
+	}
+
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
+
 	@Override
 	public String toString() {
 		return "Vuelo [id=" + id + ", codigo=" + codigo + ", precioBoleto=" + precioBoleto + ", asientosDisponibles="
-				+ asientosDisponibles + "]";
+				+ asientosDisponibles + ", destino=" + destino + "]";
 	}
+
 	
 	
 }

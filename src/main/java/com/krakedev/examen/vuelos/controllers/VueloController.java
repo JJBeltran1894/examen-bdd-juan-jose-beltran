@@ -94,8 +94,7 @@ public class VueloController {
 	        List<Vuelo> vuelos = vService.buscarPorAsientosMayores(cantidad);
 	        return ResponseEntity.ok(vuelos);
 	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-	                             .body("Error al buscar vuelos por cantidad de asientos");
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al buscar vuelos por cantidad de asientos");
 	    }
 	}
 	

@@ -1,0 +1,178 @@
+{
+  "info": {
+    "_postman_id": "17f821e0-8300-458f-b3c3-81471bbc3227",
+    "name": "Examen - Gestión de Vuelos (Krakedev)",
+    "description": "Colección de Postman para el Examen Práctico Evaluativo del Taller de Desarrollo Backend. Incluye todas las operaciones CRUD obligatorias y la consulta personalizada para la defensa en video.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46396249"
+  },
+  "item": [
+    {
+      "name": "Insertar Vuelo (POST)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"codigo\": \"LA-705\",\n    \"precioBoleto\": 420.50,\n    \"asientosDisponibles\": 85,\n    \"destino\": \"Nueva York\" \n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/vuelos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "vuelos"
+          ]
+        },
+        "description": "Inserta un nuevo vuelo en el sistema. Devuelve un estatus 201 CREATED si es exitoso o 500 INTERNAL SERVER ERROR si falla."
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Todos los Vuelos (GET)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/vuelos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "vuelos"
+          ]
+        },
+        "description": "Obtiene la lista completa de todos los vuelos registrados. Devuelve 200 OK o 500 INTERNAL SERVER ERROR."
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar Vuelo por ID (GET)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/vuelos/23",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "vuelos",
+            "23"
+          ]
+        },
+        "description": "Busca un vuelo específico utilizando su ID numérico. Devuelve 200 OK si existe o 404 NOT FOUND si no se encuentra."
+      },
+      "response": []
+    },
+    {
+      "name": "Actualizar Vuelo (PUT)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"codigo\": \"AA-123\",\n    \"precioBoleto\": 288.00,\n    \"asientosDisponibles\": 115,\n    \"destino\": \"Nueva York\" \n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/vuelos/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "vuelos",
+            "1"
+          ]
+        },
+        "description": "Actualiza la información completa de un vuelo existente identificado por su ID. Devuelve 200 OK o 404 NOT FOUND / 400 BAD REQUEST."
+      },
+      "response": []
+    },
+    {
+      "name": "Eliminar Vuelo (DELETE)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/vuelos/3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "vuelos",
+            "3"
+          ]
+        },
+        "description": "Elimina un registro de vuelo del sistema por su ID. Devuelve 200 OK si se elimina exitosamente o 404 NOT FOUND si el ID no existe."
+      },
+      "response": []
+    },
+    {
+      "name": "Consulta Personalizada - Asientos Disponibles Mayores a X (GET)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/vuelos/buscar/asientos?cantidad=10",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "vuelos",
+            "buscar",
+            "asientos"
+          ],
+          "query": [
+            {
+              "key": "cantidad",
+              "value": "10"
+            }
+          ]
+        },
+        "description": "Endpoint opcional para demostrar el uso de la consulta personalizada 'findByAsientosDisponiblesGreaterThan' requerida para la defensa en video."
+      },
+      "response": []
+    }
+  ]
+}
