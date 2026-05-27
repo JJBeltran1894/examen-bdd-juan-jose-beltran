@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.krakedev.examen.vuelos.entities.Vuelo;
@@ -46,7 +47,7 @@ public class VueloController {
 	}
 	
 	@GetMapping("/{id}")
-    public ResponseEntity<?> buscarPorId(@PathVariable long id) {
+    public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
 		try {
 			Optional<Vuelo> vuelo =vService.buscarPorId(id);
 			if (vuelo.isEmpty()) {
@@ -60,7 +61,7 @@ public class VueloController {
 	}
 	
 	@PutMapping("/{id}")
-    public ResponseEntity<?> actualizar(@PathVariable Integer id, @RequestBody Vuelo vuelo) {
+    public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody Vuelo vuelo) {
 		try {
 			Vuelo actualizado = vService.actualizar(id, vuelo);
 			if (actualizado ==null) {
@@ -75,7 +76,7 @@ public class VueloController {
 	}
 	
 	@DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable long id) {
+    public ResponseEntity<?> eliminar(@PathVariable Long id) {
 		try {
 			boolean eliminado = vService.eliminar(id);
 			if (!eliminado) {
@@ -85,6 +86,17 @@ public class VueloController {
 		}catch(Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al eliminar vuelo: " + id);
 		}
+	}
+	
+	@GetMapping("/buscar/asientos")
+	public ResponseEntity<?> buscarPorAsientos(@RequestParam Integer cantidad) {
+	    try {
+	        List<Vuelo> vuelos = vService.buscarPorAsientosMayores(cantidad);
+	        return ResponseEntity.ok(vuelos);
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                             .body("Error al buscar vuelos por cantidad de asientos");
+	    }
 	}
 	
 	

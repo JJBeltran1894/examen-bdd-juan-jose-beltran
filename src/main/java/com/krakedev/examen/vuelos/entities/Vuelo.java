@@ -13,13 +13,13 @@ public class Vuelo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(name = "codigo", length = 10, nullable = false, unique = true)
 	private String codigo;
 	
 	@Column(name = "precio_boleto", nullable = false, columnDefinition = "NUMERIC(10,2)")
-	private double precioBoleto;
+	private Double precioBoleto;
 	
 	@Column(name = "asientos_disponibles", nullable = false)
 	private int asientosDisponibles;
@@ -28,7 +28,7 @@ public class Vuelo {
 		super();
 	}
 
-	public Vuelo(int id, String codigo, double precioBoleto, int asientosDisponibles) {
+	public Vuelo(Long id, String codigo, Double precioBoleto, int asientosDisponibles) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
@@ -40,7 +40,7 @@ public class Vuelo {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -56,7 +56,7 @@ public class Vuelo {
 		return precioBoleto;
 	}
 
-	public void setPrecioBoleto(double precioBoleto) {
+	public void setPrecioBoleto(Double precioBoleto) {
 		this.precioBoleto = precioBoleto;
 	}
 
@@ -64,7 +64,7 @@ public class Vuelo {
 		return asientosDisponibles;
 	}
 
-	public void setAsientosDisponibles(int asientosDisponibles) {
+	public void setAsientosDisponibles(Integer asientosDisponibles) {
 		this.asientosDisponibles = asientosDisponibles;
 	}
 

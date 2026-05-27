@@ -28,11 +28,11 @@ public class VueloService {
 		return vRepository.findAll();
 	}
 	
-	public Optional<Vuelo> buscarPorId(long id){
+	public Optional<Vuelo> buscarPorId(Long id){
 		return vRepository.findById(id);
 	}
 	
-	public Vuelo actualizar(Integer id, Vuelo vuelo) {
+	public Vuelo actualizar(Long id, Vuelo vuelo) {
 		Optional<Vuelo> existeV = buscarPorId(id);
 		if (existeV !=null) {
 			return vRepository.save(vuelo);
@@ -40,11 +40,16 @@ public class VueloService {
 			return null;
 		}
 	}
-	public boolean eliminar(long id) {
+	public boolean eliminar(Long id) {
         if (vRepository.existsById(id)) {
             vRepository.deleteById(id);
             return true;
         }
         return false;
     }
+	
+	public List<Vuelo> buscarPorAsientosMayores(Integer cantidad) {
+
+	    return vRepository.findByAsientosDisponiblesGreaterThan(cantidad);
+	}
 }
